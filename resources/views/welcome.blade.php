@@ -6,5 +6,6 @@
     <div class="row">
         <h1>Hola usando layouts</h1>
         <i class="fab fa-500px"></i>
+        <a href="{{route('personas.create')}}">Agregar</a>
     </div>
 @endsection
