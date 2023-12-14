@@ -10,7 +10,8 @@ class PersonasController extends Controller
 
     public function index()
     {
-        return view('welcome');
+        $datos = Personas::all();
+        return view('welcome', compact('datos'));
     }
 
 
