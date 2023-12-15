@@ -3,13 +3,12 @@
 @section('tituloPagina', 'Crud con laravel 8')
 
 @section('contenido')
-    <br><br>
     <div class="card">
         <div class="card-header">
             CRUD con laravel y Msql
         </div>
         <div class="card-body">
-            <h5 class="card-title">Listado de personas</h5>
+            <h5 class="card-title text-center">Listado de personas</h5>
             <p>
                 <a href={{ route('personas.create') }} class="btn btn-primary">Agregar nueva persona</a>
             </p>
@@ -34,7 +33,7 @@
                                 <td>{{ $item->materno }}</td>
                                 <td>{{ $item->nombre }}</td>
                                 <td>{{ $item->fecha_nacimiento }}</td>
-                                <td><a href="" class="btn btn-warning">Editar</a></td>
+                                <td><a href="{{ route('personas.edit') }}" class="btn btn-warning">Editar</a></td>
                                 <td><a href="" class="btn btn-danger">Eliminar</a></td>
                             </tr>
                         @endforeach
