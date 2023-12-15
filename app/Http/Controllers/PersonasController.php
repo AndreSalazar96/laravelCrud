@@ -25,6 +25,14 @@ class PersonasController extends Controller
     public function store(Request $request)
     {
         //sirve para guardar datos en la DB
+        $personas = new Personas();
+        $personas->paterno = $request->post('paterno');
+        $personas->materno = $request->post('materno');
+        $personas->nombre = $request->post('nombre');
+        $personas->fecha_nacimiento = $request->post('fecha_nacimiento');
+        $personas->save();
+
+        return redirect()->route('personas.index')->with("success", "Agregado con exito!");
     }
 
     public function show(Personas $personas)

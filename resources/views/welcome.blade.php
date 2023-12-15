@@ -8,6 +8,17 @@
             CRUD con laravel y Msql
         </div>
         <div class="card-body">
+            <div class="row">
+                <div class="col-sm-12">
+
+                    @if ($mensaje = Session::get('success'))
+                        <div class="alert alert-success" role="alert">
+                            {{ $mensaje }}
+                        </div>
+                    @endif
+
+                </div>
+            </div>
             <h5 class="card-title text-center">Listado de personas</h5>
             <p>
                 <a href={{ route('personas.create') }} class="btn btn-primary">
@@ -38,13 +49,13 @@
                                 <td>
                                     <form action="">
                                         <button class="btn btn-warning btn-sm"><span class="fas fa-user-edit"></span>
-                                            </button>
+                                        </button>
                                     </form>
                                 </td>
                                 <td>
                                     <form action="">
                                         <button class="btn btn-danger btn-sm"><span class="fas fa-user-times"></span>
-                                            </button>
+                                        </button>
                                     </form>
                                 </td>
                             </tr>
