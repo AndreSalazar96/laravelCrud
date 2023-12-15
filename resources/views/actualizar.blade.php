@@ -24,8 +24,10 @@
 
                     <br>
 
-                    <a href="{{ route('personas.index') }}" class="btn btn-info">Regresar</a>
-                    <button class="btn btn-primary">Actualizar</button>
+                    <a href="{{ route('personas.index') }}" class="btn btn-info">
+                        <span class="fas fa-undo-alt"></span> Regresar
+                    </a>
+                    <button class="btn btn-primary"><span class="fas fa-user-edit"></span> Actualizar</button>
                 </form>
             </p>
         </div>

@@ -10,7 +10,9 @@
         <div class="card-body">
             <h5 class="card-title text-center">Listado de personas</h5>
             <p>
-                <a href={{ route('personas.create') }} class="btn btn-primary">Agregar nueva persona</a>
+                <a href={{ route('personas.create') }} class="btn btn-primary">
+                    <span class="fas fa-user-plus"></span> Agregar nueva persona
+                </a>
             </p>
             <hr>
             @php
@@ -33,8 +35,18 @@
                                 <td>{{ $item->materno }}</td>
                                 <td>{{ $item->nombre }}</td>
                                 <td>{{ $item->fecha_nacimiento }}</td>
-                                <td><a href="{{ route('personas.edit') }}" class="btn btn-warning">Editar</a></td>
-                                <td><a href="" class="btn btn-danger">Eliminar</a></td>
+                                <td>
+                                    <form action="">
+                                        <button class="btn btn-warning btn-sm"><span class="fas fa-user-edit"></span>
+                                            </button>
+                                    </form>
+                                </td>
+                                <td>
+                                    <form action="">
+                                        <button class="btn btn-danger btn-sm"><span class="fas fa-user-times"></span>
+                                            </button>
+                                    </form>
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>
