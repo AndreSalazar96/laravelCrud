@@ -42,16 +42,25 @@ class PersonasController extends Controller
     }
 
 
-    public function edit(Personas $personas)
+    public function edit($id)
     {
         //este metodo nos sirve para traer los datos que se van a editar y los coloca en un formulario
-        return view('actualizar');
+        $personas = Personas::find($id);
+        return view('actualizar', compact('personas'));
     }
 
 
-    public function update(Request $request, Personas $personas)
+    public function update(Request $request, $id)
     {
         //este metodo actualiza los datos en la BD
+        $personas = Personas::find($id);
+        $personas->paterno = $request->post('paterno');
+        $personas->materno = $request->post('materno');
+        $personas->nombre = $request->post('nombre');
+        $personas->fecha_nacimiento = $request->post('fecha_nacimiento');
+        $personas->save();
+
+        return redirect()->route('personas.index')->with("success", "Actualizado con exito!");
     }
 
     public function destroy(Personas $personas)
