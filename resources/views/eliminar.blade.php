@@ -30,9 +30,11 @@
                 </table>
                 <hr>
                 <form action="">
-                    <a href="{{ route('personas.index') }}" class="btn btn-info">Regresar</a>
+                    <a href="{{ route('personas.index') }}" class="btn btn-info">
+                        <span class="fas fa-undo-alt"></span> Regresar
+                    </a>
                     <button class="btn btn-danger">
-                        Eliminar
+                       <span class="fas fa-user-times"></span> Eliminar
                     </button>
                 </form>
             </div>
