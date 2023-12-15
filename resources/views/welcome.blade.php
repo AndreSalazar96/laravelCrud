@@ -47,7 +47,7 @@
                                 <td>{{ $item->nombre }}</td>
                                 <td>{{ $item->fecha_nacimiento }}</td>
                                 <td>
-                                    <form action="">
+                                    <form action="{{ route('personas.edit', $item->id) }}" method="GET">
                                         <button class="btn btn-warning btn-sm"><span class="fas fa-user-edit"></span>
                                         </button>
                                     </form>
