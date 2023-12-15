@@ -9,24 +9,27 @@
         </div>
         <div class="card-body">
             <p class="card-text">
-                <form action="">
-                    <label for="paterno">Apellido Paterno</label>
-                    <input type="text" name="paterno" class="form-control" required>
+            <form action="">
+                <label for="paterno">Apellido Paterno</label>
+                <input type="text" name="paterno" class="form-control" required>
 
-                    <label for="materno">Apellido Materno</label>
-                    <input type="text" name="materno" class="form-control" required>
+                <label for="materno">Apellido Materno</label>
+                <input type="text" name="materno" class="form-control" required>
 
-                    <label for="nombre">Nombre</label>
-                    <input type="text" name="nombre" class="form-control" required>
+                <label for="nombre">Nombre</label>
+                <input type="text" name="nombre" class="form-control" required>
 
-                    <label for="fecha_nacimiento">Fecha Nacimiento</label>
-                    <input type="date" name="fecha_nacimiento" class="form-control" required>
+                <label for="fecha_nacimiento">Fecha Nacimiento</label>
+                <input type="date" name="fecha_nacimiento" class="form-control" required>
 
-                    <br>
+                <br>
 
-                    <a href="{{ route('personas.index') }}" class="btn btn-info">Regresar</a>
-                    <button class="btn btn-primary">Agregar</button>
-                </form>
+                <a href="{{ route('personas.index') }}" class="btn btn-info">
+                    <span class="fas fa-undo-alt"></span> Regresar
+                </a>
+                <button class="btn btn-primary">
+                    <span class="fas fa-user-plus"></span> Agregar</button>
+            </form>
             </p>
         </div>
     </div>
