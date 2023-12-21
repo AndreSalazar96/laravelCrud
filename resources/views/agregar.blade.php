@@ -23,6 +23,13 @@
                 <label for="fecha_nacimiento">Fecha Nacimiento</label>
                 <input type="date" name="fecha_nacimiento" class="form-control" required>
 
+                <label for="nombre">Estado Civil</label>
+                <select name="id_edo_civil"  class="form-control" require>
+                    @foreach ($datos as $item)
+                        <option value="{{ $item->id_edo_civil }}">{{ $item->edo_civil }}</option>
+                    @endforeach         
+                </select>
+
                 <br>
 
                 <a href="{{ route('personas.index') }}" class="btn btn-info">
