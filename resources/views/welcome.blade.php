@@ -36,6 +36,7 @@
                         <th>Apellido Materno</th>
                         <th>Nombre</th>
                         <th>Fecha nacimiento</th>
+                        <th>Estado civil</th>
                         <th>Editar</th>
                         <th>Eliminar</th>
                     </thead>
@@ -46,6 +47,7 @@
                                 <td>{{ $item->materno }}</td>
                                 <td>{{ $item->nombre }}</td>
                                 <td>{{ $item->fecha_nacimiento }}</td>
+                                <td id="edo_civil_{{ $item->id_edo_civil }}">{{ $item->edo_civil }}</td>
                                 <td>
                                     <form action="{{ route('personas.edit', $item->id) }}" method="GET">
                                         <button class="btn btn-warning btn-sm"><span class="fas fa-user-edit"></span>

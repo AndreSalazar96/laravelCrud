@@ -18,6 +18,7 @@
                         <th>Apellido materno</th>
                         <th>Nombre</th>
                         <th>Fecha de nacimiento</th>
+                        {{-- <th>Estado civil</th> --}}
                     </thead>
                     <tbody>
                         <tr>
@@ -25,6 +26,7 @@
                             <td>{{ $personas->materno }}</td>
                             <td>{{ $personas->nombre }}</td>
                             <td>{{ $personas->fecha_nacimiento }}</td>
+                            {{-- <td>{{ $personas->id_edo_civil }}</td> --}}
                         </tr>
                     </tbody>
                 </table>

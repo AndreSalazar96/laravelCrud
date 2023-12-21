@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Personas;
+use  App\Models\EdoCivil;
 use Illuminate\Http\Request;
 
 class PersonasController extends Controller
@@ -10,7 +11,8 @@ class PersonasController extends Controller
 
     public function index()
     {
-        $datos = Personas::all();
+        // $datos = Personas::all();
+        $datos = Personas::select('personas.id', 'personas.nombre', 'personas.paterno', 'personas.materno', 'personas.fecha_nacimiento', 'personas.id_edo_civil', 'edo_civil.edo_civil')->join('edo_civil', 'personas.id_edo_civil', '=', 'edo_civil.id_edo_civil')->get();
         return view('welcome', compact('datos'));
     }
 
@@ -18,7 +20,9 @@ class PersonasController extends Controller
     public function create()
     {
         //el formulario donde nosotros agregamos datos
-        return view('agregar');
+        $datos = EdoCivil::all();
+        return view('agregar', compact('datos'));
+        // return view('agregar');
     }
 
 
@@ -30,6 +34,7 @@ class PersonasController extends Controller
         $personas->materno = $request->post('materno');
         $personas->nombre = $request->post('nombre');
         $personas->fecha_nacimiento = $request->post('fecha_nacimiento');
+        $personas->id_edo_civil = $request->post('id_edo_civil');
         $personas->save();
 
         return redirect()->route('personas.index')->with("success", "Agregado con exito!");
@@ -47,7 +52,8 @@ class PersonasController extends Controller
     {
         //este metodo nos sirve para traer los datos que se van a editar y los coloca en un formulario
         $personas = Personas::find($id);
-        return view('actualizar', compact('personas'));
+        $edo_civil_select = EdoCivil::select('edo_civil.id_edo_civil', 'edo_civil.edo_civil')->get();
+        return view('actualizar', compact('personas'), compact('edo_civil_select')); 
     }
 
 
@@ -59,6 +65,7 @@ class PersonasController extends Controller
         $personas->materno = $request->post('materno');
         $personas->nombre = $request->post('nombre');
         $personas->fecha_nacimiento = $request->post('fecha_nacimiento');
+        $personas->id_edo_civil = $request->post('id_edo_civil');
         $personas->save();
 
         return redirect()->route('personas.index')->with("success", "Actualizado con exito!");
