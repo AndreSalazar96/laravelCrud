@@ -1,0 +1,5 @@
+/* estilo para mensajes de error */
+small.errorMessage {
+    color: red;
+    font-weight: bold;
+}
