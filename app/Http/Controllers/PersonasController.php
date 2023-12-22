@@ -4,16 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Models\Personas;
 use  App\Models\EdoCivil;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PersonasController extends Controller
 {
 
     public function index()
     {
-        // $datos = Personas::all();
-        $datos = Personas::select('personas.id', 'personas.nombre', 'personas.paterno', 'personas.materno', 'personas.fecha_nacimiento', 'personas.id_edo_civil', 'edo_civil.edo_civil')->join('edo_civil', 'personas.id_edo_civil', '=', 'edo_civil.id_edo_civil')->get();
-        return view('welcome', compact('datos'));
+        $id_session = Auth::user()->id;
+        $datos = Personas::select('*', 'personas.id_edo_civil', 'edo_civil.edo_civil')->join('edo_civil', 'personas.id_edo_civil', '=', 'edo_civil.id_edo_civil')->where('personas.id_usuario', '=', $id_session)->get();
+        return view('welcome', compact('datos'), compact('id_session'));
     }
 
 
@@ -30,6 +32,7 @@ class PersonasController extends Controller
     {
         //sirve para guardar datos en la DB
         $personas = new Personas();
+        $personas->id_usuario = Auth::user()->id;
         $personas->paterno = $request->post('paterno');
         $personas->materno = $request->post('materno');
         $personas->nombre = $request->post('nombre');
@@ -52,8 +55,8 @@ class PersonasController extends Controller
     {
         //este metodo nos sirve para traer los datos que se van a editar y los coloca en un formulario
         $personas = Personas::find($id);
-        $edo_civil_select = EdoCivil::select('edo_civil.id_edo_civil', 'edo_civil.edo_civil')->get();
-        return view('actualizar', compact('personas'), compact('edo_civil_select')); 
+        $edo_civil_select = EdoCivil::select('*')->get();
+        return view('actualizar', compact('personas'), compact('edo_civil_select'));
     }
 
 

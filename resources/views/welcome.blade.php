@@ -3,6 +3,11 @@
 @section('tituloPagina', 'Crud con laravel 8')
 
 @section('contenido')
+
+    {{-- @php
+        print_r($id_session);
+    @endphp --}}
+
     <div class="card">
         <div class="card-header">
             Tabla de usuarios | Bienvenido @auth {{ Auth::user()->name }}  @endauth
