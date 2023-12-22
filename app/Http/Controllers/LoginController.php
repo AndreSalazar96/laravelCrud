@@ -1,0 +1,83 @@
+<?php
+
+namespace App\Http\Controllers;
+
+
+
+// use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
+
+class LoginController extends Controller
+{
+    // 
+    public function register(Request $request)
+    {
+
+        //Validar los datos
+        $request->validate([
+            'name' => 'required|max:25',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|min:6'
+        ], [
+            'name.required' => 'El nombre es requerido.',
+            'email.required' => 'El email es requerido',
+            'password.required' => 'El password es requerido',
+            'email.unique' => 'Este correo ya existe'
+        ]);
+
+
+        $user = new User();
+
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = Hash::make($request->password);
+
+        $user->save();
+
+        Auth::login($user);
+
+        return redirect()->route('personas.index');
+    }
+
+    public function login(Request $request)
+    {
+
+        //Validar los datos
+        $request->validate([
+            'email' => 'required',
+            'password' => 'required',
+        ], [
+            'email.required' => 'El email es requerido',
+            'password.required' => 'La contraseña es requerida'
+        ]);
+
+        // Validacion
+        $credentials = [
+            "email" => $request->email,
+            "password" => $request->password,
+        ];
+
+        $remember = ($request->has('remember' ? true : false));
+
+        if (Auth::attempt($credentials, $remember)) {
+            $request->session()->regenerate();
+            return redirect()->intended(route('personas.index'));
+        } else {
+            return redirect()->route('login')->with("refused", "Usuario no registrado");
+        }
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect(route('login'));
+    }
+}

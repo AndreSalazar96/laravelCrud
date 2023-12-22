@@ -5,7 +5,10 @@
 @section('contenido')
     <div class="card">
         <div class="card-header">
-            CRUD con laravel y Msql
+            Tabla de usuarios | Bienvenido @auth {{ Auth::user()->name }}  @endauth
+            <div class="col-md-3 text-end">
+                <a href="{{ route('logout') }}"><button type="button" class="btn btn-online-primary me-2">Salir</button></a>
+            </div>
         </div>
         <div class="card-body">
             <div class="row">
