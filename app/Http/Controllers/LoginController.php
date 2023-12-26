@@ -21,12 +21,14 @@ class LoginController extends Controller
         $request->validate([
             'name' => 'required|max:25',
             'email' => 'required|email|unique:users',
-            'password' => 'required|min:6'
+            'password' => 'required|min:6',
+            'avatar' => 'required'
         ], [
             'name.required' => 'El nombre es requerido.',
             'email.required' => 'El email es requerido',
             'password.required' => 'El password es requerido',
-            'email.unique' => 'Este correo ya existe'
+            'email.unique' => 'Este correo ya existe',
+            'avatar.required' => 'La imagen es requerida'
         ]);
 
 
@@ -34,13 +36,14 @@ class LoginController extends Controller
 
         $user->name = $request->name;
         $user->email = $request->email;
+        $user->avatar = $request->avatar;
         $user->password = Hash::make($request->password);
 
         $user->save();
 
         Auth::login($user);
 
-        return redirect()->route('personas.index');
+        return redirect()->route('user.index');
     }
 
     public function login(Request $request)
@@ -62,10 +65,11 @@ class LoginController extends Controller
         ];
 
         $remember = ($request->has('remember' ? true : false));
+        // $id_session = Auth::user()->id;
 
         if (Auth::attempt($credentials, $remember)) {
             $request->session()->regenerate();
-            return redirect()->intended(route('personas.index'));
+            return redirect()->intended(route('user.index'));
         } else {
             return redirect()->route('login')->with("refused", "Usuario no registrado");
         }
