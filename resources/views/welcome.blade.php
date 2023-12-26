@@ -4,15 +4,15 @@
 
 @section('contenido')
 
-    {{-- @php
-        print_r($id_session);
-    @endphp --}}
-
     <div class="card">
-        <div class="card-header">
-            Tabla de usuarios | Bienvenido @auth {{ Auth::user()->name }}  @endauth
-            <div class="col-md-3 text-end">
-                <a href="{{ route('logout') }}"><button type="button" class="btn btn-online-primary me-2">Salir</button></a>
+        <div class="card-header col-md-12">
+            <div class="row">
+                <div class="col-md-6">
+                    Tabla de usuarios | Bienvenido @auth {{ Auth::user()->name }} @endauth | <a href="{{ route('user.index') }}">Ver perfil</a>
+                </div>
+                <div class="col-md-6 text-end">
+                    <a href="{{ route('logout') }}" class="btn btn-secondary me-2">Cerrar sesión</a>
+                </div>
             </div>
         </div>
         <div class="card-body">
