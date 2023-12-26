@@ -3,6 +3,8 @@
 use App\Http\Controllers\PersonasController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\UserProfileControllerController;
+
 
 
 /*
@@ -37,3 +39,9 @@ Route::post('/validar-registro', [LoginController::class, 'register'])->name('va
 Route::post('/inicia-sesion', [LoginController::class, 'login'])->name('inicia-sesion');
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout'); 
 // EndLogin route
+
+// Pantalla de usuario
+Route::get('/user',[UserProfileControllerController::class, 'index'])->middleware('auth')->name('user.index');
+
+
+// End pantalla de usuario
