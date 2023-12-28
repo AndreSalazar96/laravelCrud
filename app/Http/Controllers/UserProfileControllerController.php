@@ -63,9 +63,11 @@ class UserProfileControllerController extends Controller
      * @param  \App\Models\UserProfileController  $userProfileController
      * @return \Illuminate\Http\Response
      */
-    public function edit(UserProfileController $userProfileController)
+    public function edit($id)
     {
-        //
+        //este metodo nos sirve para traer los datos que se van a editar y los coloca en un formulario
+        $users = User::find($id);
+        return view('user_edit', compact('users'));
     }
 
     /**
@@ -75,9 +77,26 @@ class UserProfileControllerController extends Controller
      * @param  \App\Models\UserProfileController  $userProfileController
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, UserProfileController $userProfileController)
+    public function update(Request $request, $id)
     {
-        //
+        //este metodo actualiza los datos en la BD
+        $users = User::find($id);
+
+        $users->name = $request->post('name');
+        $users->email = $request->post('email');
+        // $users->avatar = $request->post('avatar');
+
+        if ($request->hasFile('avatar')) {
+            $file = $request->file('avatar');
+            $destinationPath = 'img/avatar/';
+            $filename = time() . '-' . $file->getClientOriginalName();
+            $uploadSuccess = $request->file('avatar')->move($destinationPath, $filename);
+            $users->avatar = $destinationPath . $filename;
+        }
+
+        $users->save();
+
+        return redirect()->route('user.index')->with("successUser", "Información de usuario actualizada con exito!");
     }
 
     /**

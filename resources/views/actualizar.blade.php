@@ -27,12 +27,6 @@
                     value="{{ $personas->fecha_nacimiento }}">
 
                 <label for="nombre">Estado Civil</label>
-{{-- 
-                @foreach ($personas_inner as $item)
-                    <input type="text" value="{{ $item->edo_civil }}" placeholder="{{ $item->edo_civil }}"
-                        class="form-control" disabled>
-                @endforeach --}}
-
                 <select name="id_edo_civil" class="form-control" require>
                     @foreach ($edo_civil_select as $item)
                         <option value="{{ $item->id_edo_civil }}">{{ $item->edo_civil }}</option>
