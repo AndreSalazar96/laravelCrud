@@ -6,13 +6,14 @@
     <div class="container">
         <div class="row col-md-12">
             <div class="row col-md-6 p-5">
-                <form method="POST" action="{{ route('validar-registro') }}">
+                <form method="POST" action="{{ route('validar-registro') }}" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
                         <label for="exampleInputPassword1">Nombre</label>
-                        <input type="text" class="form-control" id="exampleInpuNombre" placeholder="Nombre" name="name" value="{{ old('name') }}">
+                        <input type="text" class="form-control" id="exampleInpuNombre" placeholder="Nombre" name="name"
+                            value="{{ old('name') }}">
                         @error('name')
-                            <small class="errorMessage" id="nameError" >{{ $message }}</small>
+                            <small class="errorMessage" id="nameError">{{ $message }}</small>
                         @enderror
                     </div>
                     <div class="form-group">
@@ -20,19 +21,21 @@
                         <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
                             placeholder="Enter email" name="email" value="{{ old('email') }}">
                         @error('email')
-                            <small class="errorMessage" id="emailError" >{{ $message }} <a href="{{ route('login') }}">inicia sesión</a></small> 
+                            <small class="errorMessage" id="emailError">{{ $message }} <a
+                                    href="{{ route('login') }}">inicia sesión</a></small>
                         @enderror
                     </div>
                     <div class="form-group">
                         <label for="formFile" class="form-label">Foto</label>
-                        <input class="form-control" type="file" id="formFile" name="avatar" value="{{ old('avatar') }}>
-                      </div>
+                        <input class="form-control" type="file" id="formFile" name="avatar"
+                            value="{{ old('avatar') }}">
+                    </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">Password</label>
                         <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password"
                             name="password" value="{{ old('password') }}">
                         @error('password')
-                            <small class="errorMessage" id="passwordError" >{{ $message }}</small>
+                            <small class="errorMessage" id="passwordError">{{ $message }}</small>
                         @enderror
                     </div>
                     <button type="submit" class="btn btn-primary mt-2">Registrarse</button>

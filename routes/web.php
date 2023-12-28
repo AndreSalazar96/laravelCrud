@@ -42,6 +42,8 @@ Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
 // Pantalla de usuario
 Route::get('/user',[UserProfileControllerController::class, 'index'])->middleware('auth')->name('user.index');
+Route::get('/user-edit/{id}', [UserProfileControllerController::class, 'edit'])->middleware('auth')->name('user.edit');
+Route::put('/user-update/{id}', [UserProfileControllerController::class, 'update'])->middleware('auth')->name('user.update');
 
 
 // End pantalla de usuario

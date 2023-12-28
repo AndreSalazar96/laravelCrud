@@ -34,9 +34,18 @@ class LoginController extends Controller
 
         $user = new User();
 
+        if($request->hasFile('avatar')){
+            $file = $request->file('avatar');
+            $destinationPath = 'img/avatar/';
+            $filename = time() . '-' . $file->getClientOriginalName();
+            $uploadSuccess = $request->file('avatar')->move($destinationPath, $filename);
+            $user->avatar = $destinationPath . $filename;
+
+        }
+
         $user->name = $request->name;
         $user->email = $request->email;
-        $user->avatar = $request->avatar;
+        // $user->avatar = $request->avatar;
         $user->password = Hash::make($request->password);
 
         $user->save();
